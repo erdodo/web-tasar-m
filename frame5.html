@@ -123,7 +123,7 @@
                             <th>İşlemler</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="myTable">
                         <tr>
                             <td>Mehmet Solak</td>
                             <td>Kişilik Testi</td>
@@ -202,6 +202,24 @@
      <script>
         $(document).ready( function () {
             $('.table').DataTable();//sınıfı 'table' olan tüm tabloları datatable'e çeviriyor.
+            $("#kayitDönemi").on("change", function () {
+            var value = $(this).val().toLowerCase();
+            $("#myTable tr").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+        $("#tamam").on("click", function () {
+            var value = 'amamlanmış'
+            $("#myTable tr").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+        $("#hayir").on("click", function () {
+            var value = 'amamlanmamış'
+            $("#myTable tr").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
         } );
     </script>
     <!--Datatables tablo kodları-->
